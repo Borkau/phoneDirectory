@@ -1,47 +1,48 @@
 package borkaugroup.phonedirectory.dao;
 
 import borkaugroup.phonedirectory.model.Subscriber;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class SubscriberDaoImpl implements SubscriberDao {
-    private static final AtomicInteger AUTO_ID = new AtomicInteger(0);
-    private static Map<Integer, Subscriber> subscribers = new HashMap<>();
+    private SessionFactory sessionFactory;
 
-    static {
-        Subscriber subscriber1 = new Subscriber();
-        subscriber1.setId(AUTO_ID.getAndIncrement());
-        subscriber1.setPhone(922179286);
-        subscriber1.setName("Artem Chebarov");
-        subscribers.put(subscriber1.getId(), subscriber1);
+    @Autowired
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
-
-    @Override
+    @SuppressWarnings("unchecked")
     public List<Subscriber> allSubs() {
-        return new ArrayList<>(subscribers.values());
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("from Subscriber ").list();
     }
 
     @Override
     public void add(Subscriber subscriber) {
-        subscriber.setId(AUTO_ID.getAndIncrement());
-        subscribers.put(subscriber.getId(), subscriber);
+        Session session = sessionFactory.getCurrentSession();
+        session.persist(subscriber);
     }
 
     @Override
     public void delete(Subscriber subscriber) {
-        subscribers.remove(subscriber.getId());
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(subscriber);
     }
 
     @Override
     public void edit(Subscriber subscriber) {
-        subscribers.put(subscriber.getId(), subscriber);
+        Session session = sessionFactory.getCurrentSession();
+        session.update(subscriber);
     }
 
     @Override
     public Subscriber getById(int id) {
-        return subscribers.get(id);
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(Subscriber.class, id);
     }
 }

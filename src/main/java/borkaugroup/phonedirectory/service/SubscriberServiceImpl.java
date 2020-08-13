@@ -4,6 +4,7 @@ import borkaugroup.phonedirectory.dao.SubscriberDao;
 import borkaugroup.phonedirectory.dao.SubscriberDaoImpl;
 import borkaugroup.phonedirectory.model.Subscriber;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class SubscriberServiceImpl implements SubscriberService {
     }
 
         @Override
+        @Transactional
         public List<Subscriber> allSubs() {
             return subscriberDao.allSubs();
         }
