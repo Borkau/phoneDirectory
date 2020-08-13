@@ -1,14 +1,28 @@
 package borkaugroup.phonedirectory.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "subscribers")
 public class Subscriber {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "phone")
     private long phone;
+
+    @Column(name = "name")
     private String name;
 
+    public Subscriber() {
+    }
     public int getId() {
         return id;
     }
+
 
     public void setId(int id) {
         this.id = id;
@@ -29,5 +43,4 @@ public class Subscriber {
     public void setName(String name) {
         this.name = name;
     }
-
 }
