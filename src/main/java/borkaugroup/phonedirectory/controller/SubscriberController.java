@@ -2,7 +2,6 @@ package borkaugroup.phonedirectory.controller;
 
 import borkaugroup.phonedirectory.model.Subscriber;
 import borkaugroup.phonedirectory.service.SubscriberService;
-import borkaugroup.phonedirectory.service.SubscriberServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,10 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-
 @Controller
 public class SubscriberController {
-    private SubscriberService subscriberService = new SubscriberServiceImpl();
+
+    private SubscriberService subscriberService;
 
     @Autowired
     public void setSubscriberService(SubscriberService subscriberService) {
