@@ -1,0 +1,14 @@
+CREATE DATABASE phonebook
+CREATE TABLE subscribers
+(
+  id int(10) PRIMARY KEY AUTO_INCREMENT,
+  phone bigint(15),
+  name VARCHAR(50) NOT NULL  
+)
+CREATE UNIQUE INDEX subscribers_phone_uindex ON subscribers (phone);
+
+INSERT INTO `subscribers` (`phone`,`name`)
+VALUES
+  (9876543210, 'Paul Artrides'),
+  (9638527410, 'Emmeth Brown'),
+  (9876543210, 'Scar Mufasowitch);
