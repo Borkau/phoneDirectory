@@ -48,7 +48,7 @@ public class SubscriberController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("editPage");
+        modelAndView.setViewName("addPage");
         return modelAndView;
     }
     @RequestMapping(value = "/add", method = RequestMethod.POST)
