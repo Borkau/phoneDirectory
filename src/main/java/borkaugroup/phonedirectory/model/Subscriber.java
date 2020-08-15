@@ -17,12 +17,9 @@ public class Subscriber {
     @Column(name = "name")
     private String name;
 
-    public Subscriber() {
-    }
     public int getId() {
         return id;
     }
-
 
     public void setId(int id) {
         this.id = id;

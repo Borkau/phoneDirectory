@@ -31,7 +31,7 @@ public class SubscriberController {
         return modelAndView;
     }
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public ModelAndView editPage(@PathVariable("id") int id) {
+    public ModelAndView editPage(@PathVariable int id) {
         Subscriber subscriber = subscriberService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editPage");
